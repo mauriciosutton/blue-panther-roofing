@@ -321,6 +321,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   .reviews { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
+  .container { padding: 0 28px; }   /* more breathing room on mobile */
   .nav, .header__phone { display: none; }
   .header__cta .btn--primary { display: none; }   /* redundant on mobile; CTA lives in hero + menu */
   .nav-toggle { display: inline-flex; }
