@@ -322,6 +322,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 @media (max-width: 760px) {
   .nav, .header__phone { display: none; }
+  .header__cta .btn--primary { display: none; }   /* redundant on mobile; CTA lives in hero + menu */
   .nav-toggle { display: inline-flex; }
   .header.is-open .nav {
     display: flex; flex-direction: column; gap: 0;
