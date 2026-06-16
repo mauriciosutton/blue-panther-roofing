@@ -21,7 +21,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: hidden; }   /* safety net against any horizontal bleed */
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -78,7 +79,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .section { padding: 88px 0; }
 .section--soft { background: var(--bg-soft); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
 .section__head { max-width: 660px; margin-bottom: 52px; }
-.section__head h2 { font-size: clamp(1.85rem, 3.4vw, 2.55rem); }
+.section__head h2 { font-size: clamp(1.55rem, 6vw, 2.55rem); }
 .section__head p { font-size: 1.06rem; color: var(--muted); margin-bottom: 0; }
 .section__head--center { margin-left: auto; margin-right: auto; text-align: center; }
 .section__head--center .eyebrow { justify-content: center; }
@@ -154,7 +155,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__inner { position: relative; z-index: 1; padding: 96px 0 84px; max-width: 760px; }
 .hero .eyebrow { color: #F0A766; }
 .hero .eyebrow::before { background: #F0A766; }
-.hero h1 { color: #fff; font-size: clamp(2.3rem, 5.2vw, 3.7rem); font-weight: 800; }
+.hero h1 { color: #fff; font-size: clamp(1.7rem, 7vw, 3.7rem); font-weight: 800; overflow-wrap: break-word; }
 .hero h1 span { color: #F0A766; }
 .hero__lead { font-size: 1.18rem; color: #C8D4E2; max-width: 580px; margin-bottom: 30px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 38px; }
@@ -213,6 +214,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .why { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .why__list { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 .feature { display: flex; gap: 14px; }
+.feature > div { min-width: 0; }
 .feature__ico {
   flex: none; width: 42px; height: 42px; border-radius: var(--radius);
   background: var(--navy); color: #fff;
@@ -236,14 +238,16 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Quote / Contact ---------- */
 .quote { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; }
-.quote__info h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); }
+.quote > * { min-width: 0; }   /* allow columns to shrink on narrow screens */
+.quote__info h2 { font-size: clamp(1.55rem, 6vw, 2.4rem); }
 .quote__info p { color: var(--muted); }
 .contact-list { margin-top: 30px; display: grid; gap: 20px; }
 .contact-row { display: flex; gap: 14px; align-items: flex-start; }
+.contact-row > div { min-width: 0; }   /* let long values (email) wrap instead of overflowing */
 .contact-row__ico { flex: none; width: 40px; height: 40px; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; color: var(--navy); }
 .contact-row__ico svg { width: 20px; height: 20px; stroke-width: 1.7; }
 .contact-row__label { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; }
-.contact-row__val { font-family: "Archivo", sans-serif; font-weight: 700; color: var(--ink); font-size: 1.05rem; }
+.contact-row__val { font-family: "Archivo", sans-serif; font-weight: 700; color: var(--ink); font-size: 1.05rem; overflow-wrap: anywhere; }
 .contact-row__val a:hover { color: var(--accent); }
 
 .form {
@@ -255,7 +259,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .field label { display: block; font-weight: 600; font-size: .9rem; color: var(--ink); margin-bottom: 7px; }
 .field label .req { color: var(--accent); }
 .field input, .field select, .field textarea {
-  width: 100%; font-family: inherit; font-size: 1rem; color: var(--ink);
+  width: 100%; min-width: 0; font-family: inherit; font-size: 1rem; color: var(--ink);
   padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--radius);
   background: #fff; transition: border-color .18s ease;
 }
@@ -297,7 +301,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer .brand__name { color: #fff; }
 .footer__about { margin-top: 16px; max-width: 320px; line-height: 1.6; }
 .footer h4 { color: #fff; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 16px; font-weight: 700; }
-.footer__links li { margin-bottom: 10px; }
+.footer__links li { margin-bottom: 10px; overflow-wrap: anywhere; }
 .footer__links a:hover, .footer a:hover { color: #fff; }
 .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; flex-wrap: wrap; gap: 12px; font-size: .85rem; }
 .footer__social { display: flex; gap: 12px; }
@@ -319,9 +323,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   .why { grid-template-columns: 1fr; gap: 40px; }
   .quote { grid-template-columns: 1fr; gap: 40px; }
   .reviews { grid-template-columns: 1fr; }
+  .footer__top { grid-template-columns: 1fr 1fr; gap: 32px 40px; }
 }
 @media (max-width: 760px) {
-  .container { padding: 0 32px; }   /* more breathing room on mobile */
+  .container { padding: 0 34px; }   /* generous breathing room on mobile */
+  body { font-size: 16px; }
   .nav, .header__phone { display: none; }
   .header__cta .btn--primary { display: none; }   /* redundant on mobile; CTA lives in hero + menu */
   .nav-toggle { display: inline-flex; }
@@ -337,10 +343,19 @@ ul { margin: 0; padding: 0; list-style: none; }
   .trust__item:nth-child(2) { border-right: 0; }
   .trust__item:nth-child(1), .trust__item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.08); }
   .form__row { grid-template-columns: 1fr; gap: 0; }
+  .footer__top { grid-template-columns: 1fr; gap: 30px; }
   .section { padding: 64px 0; }
   .hero__inner { padding: 64px 0 56px; }
   .form { padding: 26px; }
   .why__panel { padding: 30px; }
+  /* slightly smaller hero copy so nothing crowds the edges */
+  .hero__lead { font-size: 1.05rem; }
+  .hero__inner { padding: 56px 0 52px; }
+  /* full-width CTAs on mobile — consistent and never cramped against an edge */
+  .why__panel .btn,
+  .cta-band__actions,
+  .cta-band__actions .btn { white-space: normal; width: 100%; }
+  .cta-band__inner { gap: 22px; padding: 48px 0; }
 }
 @media (max-width: 420px) {
   .hero__actions .btn { width: 100%; }
