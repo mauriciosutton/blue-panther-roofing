@@ -152,7 +152,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     repeating-linear-gradient(135deg, rgba(255,255,255,.022) 0 2px, transparent 2px 26px);
   pointer-events: none;
 }
-.hero__inner { position: relative; z-index: 1; padding: 96px 0 84px; max-width: 760px; }
+.hero__inner { position: relative; z-index: 1; padding-block: 96px 84px; max-width: 760px; }
 .hero .eyebrow { color: #F0A766; }
 .hero .eyebrow::before { background: #F0A766; }
 .hero h1 { color: #fff; font-size: clamp(1.7rem, 7vw, 3.7rem); font-weight: 800; overflow-wrap: break-word; }
@@ -290,7 +290,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- CTA band ---------- */
 .cta-band { background: var(--navy); color: #fff; }
-.cta-band__inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 56px 0; flex-wrap: wrap; }
+.cta-band__inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding-block: 56px; flex-wrap: wrap; }
 .cta-band h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0; }
 .cta-band p { color: #C8D4E2; margin: 8px 0 0; }
 .cta-band__actions { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -345,17 +345,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   .form__row { grid-template-columns: 1fr; gap: 0; }
   .footer__top { grid-template-columns: 1fr; gap: 30px; }
   .section { padding: 64px 0; }
-  .hero__inner { padding: 64px 0 56px; }
+  .hero__inner { padding-block: 64px 56px; }
   .form { padding: 26px; }
   .why__panel { padding: 30px; }
   /* slightly smaller hero copy so nothing crowds the edges */
   .hero__lead { font-size: 1.05rem; }
-  .hero__inner { padding: 56px 0 52px; }
+  .hero__inner { padding-block: 56px 52px; }
   /* full-width CTAs on mobile — consistent and never cramped against an edge */
   .why__panel .btn,
   .cta-band__actions,
   .cta-band__actions .btn { white-space: normal; width: 100%; }
-  .cta-band__inner { gap: 22px; padding: 48px 0; }
+  .cta-band__inner { gap: 22px; padding-block: 48px; }
 }
 @media (max-width: 420px) {
   .hero__actions .btn { width: 100%; }
